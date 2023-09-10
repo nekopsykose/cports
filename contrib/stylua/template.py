@@ -1,0 +1,14 @@
+pkgname = "stylua"
+pkgver = "0.18.2"
+pkgrel = 0
+build_style = "cargo"
+make_build_args = ["--features", "lua54,luau"]
+make_install_args = make_build_args
+hostmakedepends = ["cargo"]
+makedepends = ["rust"]
+pkgdesc = "Opinionated Lua code formatter"
+maintainer = "psykose <alice@ayaya.dev>"
+license = "MPL-2.0"
+url = "https://github.com/JohnnyMorganz/StyLua"
+source = f"https://github.com/JohnnyMorganz/StyLua/archive/refs/tags/v{pkgver}.tar.gz"
+sha256 = "25a81ffaba54479ca7ddaa6ebb7611d60f8849004b5d6c50ec1b31edb2295c8e"
