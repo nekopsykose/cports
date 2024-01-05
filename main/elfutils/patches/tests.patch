@@ -358,30 +358,6 @@ index 71afd6a..41e6c4a 100755
  test_reverse_self ()
  {
    in_file="$1"
-diff --git a/tests/run-strip-reloc.sh b/tests/run-strip-reloc.sh
-index 02e626a..8a41261 100755
---- a/tests/run-strip-reloc.sh
-+++ b/tests/run-strip-reloc.sh
-@@ -17,6 +17,8 @@
- 
- . $srcdir/test-subr.sh
- 
-+exit 77
-+
- if test -n "$ELFUTILS_MEMORY_SANITIZER"; then
-   echo "binaries linked with memory sanitizer are too big"
-   exit 77
-@@ -57,8 +59,8 @@ runtest() {
-   { echo "*** failure compare stripped files $infile"; status=1; }
- 
-   # debug files however should be smaller, when ET_REL.
--  SIZE1=$(stat -c%s $debugfile1)
--  SIZE2=$(stat -c%s $debugfile2)
-+  SIZE1=$(stat -f%z $debugfile1)
-+  SIZE2=$(stat -f%z $debugfile2)
-   test \( \( $is_ET_REL -eq 1 \) -a \( $SIZE1 -gt $SIZE2 \) \) \
- 	-o \( \( $is_ET_REL -eq 0 \) -a \( $SIZE1 -eq $SIZE2 \) \) ||
-   { echo "*** failure --reloc-debug-sections not smaller $infile"; status=1; }
 diff --git a/tests/run-strip-strmerge.sh b/tests/run-strip-strmerge.sh
 index aa9c1eb..52fb3a5 100755
 --- a/tests/run-strip-strmerge.sh
