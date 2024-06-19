@@ -1,0 +1,10 @@
+--- a/src/RdpConnection.h
++++ b/src/RdpConnection.h
+@@ -5,6 +5,7 @@
+ #pragma once
+ 
+ #include <memory>
++#include <stop_token>
+ #include <thread>
+ 
+ #include <QObject>
