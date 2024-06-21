@@ -1,8 +1,9 @@
 pkgname = "cargo-crev"
 pkgver = "0.25.9"
-pkgrel = 0
+pkgrel = 1
 build_wrksrc = "cargo-crev"
 build_style = "cargo"
+prepare_after_patch = True
 hostmakedepends = ["cargo-auditable", "pkgconf"]
 makedepends = ["openssl-devel", "libgit2-devel", "sqlite-devel"]
 pkgdesc = "Cryptographically verifiable code review system for cargo"

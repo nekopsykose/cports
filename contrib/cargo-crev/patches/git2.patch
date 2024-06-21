@@ -1,0 +1,13 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index 0be8517..3d37632 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -26,7 +26,7 @@ chrono = { version = "0.4.28", default-features = false, features = ["std", "clo
+ blake2 = "0.10.6"
+ default = "0.1.2"
+ cargo = "0.77"
+-git2 = ">=0.17,<0.19"
++git2 = ">=0.18"
+ itertools = "0.13"
+ log = "0.4.20"
+ rayon = "1.7.0"
