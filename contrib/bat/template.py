@@ -1,12 +1,13 @@
 pkgname = "bat"
 pkgver = "0.24.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cargo"
+prepare_after_patch = True
 hostmakedepends = ["cargo-auditable", "pkgconf"]
 makedepends = [
-    "rust-std",
-    "oniguruma-devel",
     "libgit2-devel",
+    "oniguruma-devel",
+    "rust-std",
     "zlib-devel",
 ]
 checkdepends = ["bash"]
