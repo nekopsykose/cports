@@ -1,0 +1,8 @@
+type = process
+command = /usr/bin/capsh --caps="cap_net_bind_service,cap_setpcap+eip cap_setgid,cap_setuid+ep" --user=_kresd --addamb="cap_net_bind_service,cap_setpcap" -- -c 'exec /usr/bin/kresd -c /etc/knot-resolver/kresd.conf -n' 
+log-file = /var/log/kresd.log
+depends-on = local.target
+depends-on = network.target
+ready-notification = pipevar:KRESD_READY_FD
+smooth-recovery = yes
+working-dir = /var/cache/knot-resolver

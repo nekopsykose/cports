@@ -1,0 +1,44 @@
+--- a/daemon/main.c
++++ b/daemon/main.c
+@@ -19,6 +19,7 @@
+ #include "lib/rules/api.h"
+ 
+ #include <arpa/inet.h>
++#include <fcntl.h>
+ #include <getopt.h>
+ #include <libgen.h>
+ #include <signal.h>
+@@ -171,6 +172,22 @@
+ 	       " [rundir]             Path to the working directory (default: .)\n");
+ }
+ 
++static void ready_notification(void) {
++	const char *ready_env;
++	int ready_fd;
++
++	ready_env = getenv("KRESD_READY_FD");
++	if (!ready_env) {
++		return;
++	}
++	ready_fd = atoi(ready_env);
++	if (!ready_fd || fcntl(ready_fd, F_GETFD) < 0) {
++		return;
++	}
++	write(ready_fd, "READY=1\n", sizeof("READY=1"));
++	close(ready_fd);
++}
++
+ /** \return exit code for main()  */
+ static int run_worker(uv_loop_t *loop, bool leader, struct args *args)
+ {
+@@ -207,9 +224,7 @@
+ 	}
+ 
+ 	/* Notify supervisor. */
+-#if ENABLE_LIBSYSTEMD
+-	sd_notify(0, "READY=1");
+-#endif
++	ready_notification();
+ 	/* Run event loop */
+ 	uv_run(loop, UV_RUN_DEFAULT);
+ 	/* Free pipe's data.  Seems OK even on the stopped loop.

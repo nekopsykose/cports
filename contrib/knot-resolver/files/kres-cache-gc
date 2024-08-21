@@ -1,0 +1,8 @@
+type = process
+command = /usr/bin/kres-cache-gc -c /var/cache/knot-resolver -d 2000
+run-as = _kresd
+log-file = /var/log/kres-cache-gc.log
+depends-on = local.target
+depends-on = network.target
+waits-for = kresd
+smooth-recovery = yes
